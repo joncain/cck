@@ -23,3 +23,8 @@ parse_import_date()
   #
   IMPORT_DATE=`(date "+%Y-%m-%d" --date="$1") 2> /dev/null`
 }
+
+get_tag()
+{
+  ffprobe ${1} 2>&1 | sed -E -n 's/^ *'$2' *: (.*)/\1/p' | tr -d '\n'
+}

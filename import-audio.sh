@@ -58,7 +58,7 @@ fi
 echo "Creating directories"
 mkdir -p ./"$IMPORT_DATE"/raw
 mkdir -p ./"$IMPORT_DATE"/processed
-#mkdir -p ./"$IMPORT_DATE"/video
+mkdir -p ./"$IMPORT_DATE"/video
 
 DEST_PATH="./$IMPORT_DATE/raw"
 echo "DEST_PATH=$DEST_PATH"
