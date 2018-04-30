@@ -27,13 +27,18 @@ ARTIST=$(get_tag $FILE_PATH 'artist')
 #
 # Overlay image with Title/Author/Date
 #
-stat cck.png &> /dev/null
-if [ $? -ne 0 ]; then
+if [ ! -e cck.png ]; then
   print_error "cck.png could not be found"
 fi
+
+if [ ! -d ${IMPORTDATE}/video ]; then
+  echo "Create video directory"
+  mkdir ${IMPORT_DATE}/video
+fi
+
 IMAGE_PATH=${IMPORT_DATE}/video/image.png
 RECORD_DATE=`date --date="${IMPORT_DATE}" "+%m/%d/%Y"`
-convert cck.png -resize 640x480 -pointsize 25 -gravity center -annotate +0+120 "${TITLE}" -pointsize 15 -gravity center -annotate +0+150 "${ARTIST}" -gravity center -annotate +0+175 "${RECORD_DATE}" ${IMAGE_PATH}
+convert cck.png -resize 640x360 -pointsize 25 -gravity center -annotate +0+80 "${TITLE}" -pointsize 15 -gravity center -annotate +0+110 "${ARTIST}" -gravity center -annotate +0+135 "${RECORD_DATE}" ${IMAGE_PATH}
 
 LOG_PATH=${IMPORT_DATE}/video/log
 #
