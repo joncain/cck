@@ -42,7 +42,7 @@ fi
 # Overlay image with Title/Author/Date
 #
 RECORD_DATE=`date --date="${IMPORT_DATE}" "+%m/%d/%Y"`
-convert ${GRAPHIC_PATH} -resize 640x360 -pointsize 25 -gravity center -annotate +0+80 "${TITLE}" -pointsize 15 -gravity center -annotate +0+110 "${ARTIST}" -gravity center -annotate +0+135 "${RECORD_DATE}" ${IMAGE_PATH}
+convert ${GRAPHIC_PATH} -resize 640x360 -pointsize 25 -gravity center -annotate +0+70 "${TITLE}" -pointsize 15 -gravity center -annotate +0+100 "${ARTIST}" -gravity center -annotate +0+120 "${RECORD_DATE}" -gravity center -annotate +0+140 "calvarykuna.org" ${IMAGE_PATH}
 
 echo "FILE_PATH=${FILE_PATH}" 
 FILE_NAME=`echo ${FILE_PATH} | cut -d '/' -f3`
