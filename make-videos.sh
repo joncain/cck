@@ -34,7 +34,7 @@ ARTIST=$(get_tag $FILE_PATH 'artist')
 #
 # Ensure the video dir exists
 #
-if [ ! -d ${ROOT}/${IMPORTDATE}/video ]; then
+if [ ! -d ${ROOT}/${IMPORT_DATE}/video ]; then
   echo "Create video directory"
   mkdir ${ROOT}/${IMPORT_DATE}/video
 fi
@@ -55,5 +55,5 @@ echo "NEW_FILE_NAME=$NEW_FILE_NAME"
 # Run background job to process videos
 #
 nohup ffmpeg -loop 1 -i "${IMAGE_PATH}" -i $FILE_PATH -c:a copy -c:v libx264 -shortest "${ROOT}/${IMPORT_DATE}/video/$NEW_FILE_NAME" >> ${LOG_PATH} 2>&1 &
-
-echo "View ${LOG_PATH} to monitor background jobs"
+PID=$!
+echo "View ${LOG_PATH} to monitor background jobs for pid ${PID}"
