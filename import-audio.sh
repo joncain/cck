@@ -35,7 +35,10 @@ fi
 #
 # Ensure we have files to copy before we create the destination
 #
-(stat "$SRC_PATH"/ZOOM000*.MP3) &> /dev/null
+FILE_NAME=`printf "ZOOM%04d.MP3" $2`
+
+echo "Looking for file: ${FILE_NAME}"
+(stat "$SRC_PATH"/${FILE_NAME}) &> /dev/null
 if [ $? -ne 0 ]; then
   print_error "No files found to copy"
 fi
@@ -60,18 +63,18 @@ mkdir -p ./"$IMPORT_DATE"/raw
 mkdir -p ./"$IMPORT_DATE"/processed
 mkdir -p ./"$IMPORT_DATE"/video
 
-DEST_PATH="./$IMPORT_DATE/raw"
+DEST_PATH="./$IMPORT_DATE/raw/${IMPORT_DATE}_1.MP3"
 echo "DEST_PATH=$DEST_PATH"
 
 echo "Copying files"
-cp "$SRC_PATH"/ZOOM000*.MP3 "$DEST_PATH"
+cp "$SRC_PATH"/"$FILE_NAME" "$DEST_PATH"
 
-echo "Renaming files"
-for F in ./"$IMPORT_DATE"/raw/ZOOM000*.MP3
-do
-  NEW_FILE_PATH="${F/ZOOM000/"${IMPORT_DATE}_"}"
-  echo "Renaming $F to $NEW_FILE_PATH"
-  mv "$F" "$NEW_FILE_PATH"
-done
+#echo "Renaming files"
+#for F in ./"$IMPORT_DATE"/raw/"$FILE_NAME"
+#do
+#  NEW_FILE_PATH="ZOOM0001"
+#  echo "Renaming $F to $NEW_FILE_PATH"
+#  mv "$F" "$NEW_FILE_PATH"
+#done
 
 exit 0

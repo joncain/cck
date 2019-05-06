@@ -4,16 +4,17 @@
 #
 # Ensure we have the import date arg
 #
-ensure_date_arg $2
+ensure_date_arg $1
 
 #
 # Parse the import date
 #
-parse_import_date $2
+parse_import_date $1
 
-ROOT=$1
+ROOT=$2
+NOTE="${3}"
 LOG_PATH=${ROOT}/${IMPORT_DATE}/video/log
-FILE_PATH=${ROOT}/${IMPORT_DATE}/processed/${IMPORT_DATE}_2.mp3
+FILE_PATH=${ROOT}/${IMPORT_DATE}/processed/${IMPORT_DATE}_1.mp3
 GRAPHIC_PATH=graphics/cck.png
 IMAGE_PATH=${ROOT}/${IMPORT_DATE}/video/image.png
 
@@ -43,7 +44,7 @@ fi
 # Overlay image with Title/Author/Date
 #
 RECORD_DATE=`date --date="${IMPORT_DATE}" "+%m/%d/%Y"`
-convert ${GRAPHIC_PATH} -resize 640x360 -pointsize 25 -gravity center -annotate +0+70 "${TITLE}" -pointsize 15 -gravity center -annotate +0+100 "${ARTIST}" -gravity center -annotate +0+120 "${RECORD_DATE}" -gravity center -annotate +0+140 "calvarykuna.org" ${IMAGE_PATH}
+convert ${GRAPHIC_PATH} -resize 640x360 -pointsize 25 -gravity center -annotate +0+70 "${TITLE}" -pointsize 15 -gravity center -annotate +0+100 "${ARTIST}" -gravity center -annotate +0+120 "${RECORD_DATE}" -gravity center -annotate +0+140 "calvarykuna.org" -pointsize 10 -gravity center -annotate +0+160 "${NOTE}" ${IMAGE_PATH}
 
 echo "FILE_PATH=${FILE_PATH}" 
 FILE_NAME=${FILE_PATH##*/}
