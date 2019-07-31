@@ -17,6 +17,8 @@ LOG_PATH=${ROOT}/${IMPORT_DATE}/video/log
 FILE_PATH=${ROOT}/${IMPORT_DATE}/processed/${IMPORT_DATE}_1.mp3
 GRAPHIC_PATH=graphics/cck.png
 IMAGE_PATH=${ROOT}/${IMPORT_DATE}/video/image.png
+GRAVITY=center
+X_OFFSET=0
 
 if [ ! -e ${FILE_PATH} ]; then
   print_error "${FILE_PATH} could not be found"
@@ -24,6 +26,12 @@ fi
 
 if [ ! -e $GRAPHIC_PATH ]; then
   print_error "${GRAPHIC_PATH} could not be found"
+fi
+
+if [ -e graphics/title-slides/${IMPORT_DATE}.png ]; then
+  GRAPHIC_PATH=graphics/title-slides/${IMPORT_DATE}.png
+  GRAVITY=east
+  X_OFFSET=50
 fi
 
 #
@@ -44,7 +52,14 @@ fi
 # Overlay image with Title/Author/Date
 #
 RECORD_DATE=`date --date="${IMPORT_DATE}" "+%m/%d/%Y"`
-convert ${GRAPHIC_PATH} -resize 640x360 -pointsize 25 -gravity center -annotate +0+70 "${TITLE}" -pointsize 15 -gravity center -annotate +0+100 "${ARTIST}" -gravity center -annotate +0+120 "${RECORD_DATE}" -gravity center -annotate +0+140 "calvarykuna.org" -pointsize 10 -gravity center -annotate +0+160 "${NOTE}" ${IMAGE_PATH}
+convert \
+  ${GRAPHIC_PATH} -resize 640x360 \
+  -pointsize 25 -gravity $GRAVITY -annotate +${X_OFFSET}+70 "${TITLE}" \
+  -pointsize 15 -gravity $GRAVITY -annotate +${X_OFFSET}+100 "${ARTIST}" \
+  -gravity $GRAVITY -annotate +${X_OFFSET}+120 "${RECORD_DATE}" \
+  -gravity $GRAVITY -annotate +${X_OFFSET}+140 "calvarykuna.org" \
+  -pointsize 10 -gravity $GRAVITY -annotate +${X_OFFSET}+160 "${NOTE}" \
+  ${IMAGE_PATH}
 
 echo "FILE_PATH=${FILE_PATH}" 
 FILE_NAME=${FILE_PATH##*/}
