@@ -32,6 +32,7 @@ if [ -e graphics/title-slides/${IMPORT_DATE}.png ]; then
   GRAPHIC_PATH=graphics/title-slides/${IMPORT_DATE}.png
   GRAVITY=east
   X_OFFSET=50
+  echo "Using custom GRAPHIC_PATH: ${GRAPHIC_PATH}"
 fi
 
 #
@@ -66,7 +67,6 @@ FILE_NAME=${FILE_PATH##*/}
 echo "FILE_NAME=$FILE_NAME"
 NEW_FILE_NAME=${FILE_NAME/mp3/mp4}
 echo "NEW_FILE_NAME=$NEW_FILE_NAME"
-
 #
 # Run background job to process videos
 #
