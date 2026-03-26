@@ -14,3 +14,9 @@ cckresize() {
   file="${1}"
   convert $file -resize 1280x720 image.png
 }
+
+cckmake() {
+  MP3="${1}"
+  IMG="${2}"
+  ffmpeg -loop 1 -r 1 -i ${IMG} -i ${MP3} -c:a copy -shortest make.mp4
+}
