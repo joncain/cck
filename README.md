@@ -1,5 +1,21 @@
 # Commands for Video Editing
 
+## Prerequisites
+You will need `ffmpeg` installed on your machine. Use your favorite package manager to install.
+
+https://ffmpeg.org/
+
+## Installing the commands
+The commands contained in the `.bash_aliases` file can be copied to your `~/.bash_aliases` (for Linux) file or `~/.zshrc` (for MacOS).
+
+Don't forget to `source` the file after adding the commands
+```bash
+source ~/.bash_aliases
+```
+```zsh
+source ~/.zshrc
+```
+
 ## cckcut
 This command will crop a video file at the supplied start/end time and output a new file
 ```bash
