@@ -6,7 +6,7 @@ You will need `ffmpeg` installed on your machine. Use your favorite package mana
 https://ffmpeg.org/
 
 ## Installing the commands
-The commands contained in the `.bash_aliases` file can be copied to your `~/.bash_aliases` (for Linux) file or `~/.zshrc` (for MacOS).
+The commands contained in the [.bash_aliases](https://github.com/joncain/cck/blob/master/.bash_aliases) file can be copied to your `~/.bash_aliases` file (for Linux), or your `~/.zshrc` file (for MacOS).
 
 Don't forget to `source` the file after adding the commands
 ```bash
